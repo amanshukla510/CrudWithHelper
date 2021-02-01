@@ -1,0 +1,313 @@
+﻿@model ProjectWithHelper.Models.Employee
+@{
+    ViewBag.Title = "EditEmpDetails";
+}
+
+@using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Update Employee Details</h4>
+        <hr />
+        <div>
+            @Html.ActionLink("Back to Details", "GetAllEmpDetails")
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Emp_ID)
+        <div class="container-fluid">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_Name, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Emp_Name, new { htmlAttributes = new { placeholder = "Enter Your Name", @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Emp_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_DOB, "D.O.B.", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Emp_DOB, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @type = "date", placeholder = "Date of Birth", @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Emp_DOB, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_Salary, "Salary", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Emp_Salary, new { htmlAttributes = new { placeholder = "Salary", @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Emp_Salary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_Address, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Emp_Address, new { htmlAttributes = new { placeholder = "Address", @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Emp_Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_Email, "E-Mail", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Emp_Email, new { htmlAttributes = new { placeholder = "Email", @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Emp_Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_MobNo, "Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Emp_MobNo, new { htmlAttributes = new { placeholder = "Phone Number", @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Emp_MobNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_Country, "Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Emp_Country, new SelectList(ViewBag.CountryList, "value", "text"), "Select Country", new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Emp_Country, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_State, "Select State", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Emp_State, new List<SelectListItem>(), "Select State", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Emp_State, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_City, "Select City", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Emp_City, new List<SelectListItem>(), "Select City", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Emp_City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @*<div class="col-md-10">
+                                <img id="user_img" height="150" width="130" style="border:solid" />
+                                @Html.TextBoxFor(m => m.ImageUpload, new { type = "file", accept = "image/jpeg,  image/jpg", onchange = "show(this)" })
+                            </div>*@
+                    </div>
+
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_Sex, "Gender", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            Male
+                            @Html.RadioButtonFor(model => model.Emp_Sex, 1)
+                            Female
+                            @Html.RadioButtonFor(model => model.Emp_Sex, 2)
+                            Other
+                            @Html.RadioButtonFor(model => model.Emp_Sex, 3)
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.LabelFor(model => model.Emp_DevLang, "Languages", htmlAttributes: new { @class = "control-label col-md-2" }) <br />
+                        <div class="col-md-10">
+
+                            @foreach (var item in ViewBag.LanguageList)
+                            {
+
+                                <input id="chk@(item.Value)" type="checkbox" name="Emp_DevLang" value="@item.Value" /> @item.Text
+
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                Your Photo
+                <img src=" ~/UploadedFiles/@Html.DisplayFor(model =>model.Emp_Img)" id="user_img_show" style="height:200px;width:200px;" />
+                <img id="user_img" height="200" width="180" style="border: solid;display:none">
+                @Html.TextBoxFor(m => m.ImageUpload, new { required = "required", type = "file", accept = "image/jpeg,  image/jpg", onchange = "show(this)" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+ //----------------------------------------------------------------------------------------------------------------------------
+            $('input:checkbox[name=Emp_DevLang]').each(function () { $(this).prop('checked', false); });
+            debugger
+            let selected = "@Model.Emp_DevLangview";
+            let selectedchk = selected.split(',');
+
+                for (var i = 0; i < selectedchk.length; i++) {
+                    let Currentchkbx = selectedchk[i];
+                    $('input:checkbox[name=Emp_DevLang]').each(function () {
+                        if (this.value == Currentchkbx) {
+                            $(this).prop('checked', true);
+                            return false;
+                        }
+                    });
+                }
+
+//----------------------------------------------------------------------------------------------------------------------------
+            var Sid =@Model.Emp_State;
+            var Cid=@Model.Emp_City;
+            //alert(Sid);
+            //alert(Cid);
+
+            state(Sid);
+
+            city(Cid,Sid);
+
+
+
+
+
+            $('#Emp_Country').change(function () { state(); });
+            $('#Emp_State').change(function () { city(); });
+        });
+
+        function state(Sid="")
+        {
+                $.ajax({
+                    type: "post",
+                    url: "/Employee/GetState",
+                    data: { CountryId: $('#Emp_Country').val() },
+                    dataType: "json",
+                    //traditional: true,
+                    success: function (Data)
+                    {
+                        Data = JSON.parse(Data);
+                        $("#Emp_State").empty();
+                        $("#Emp_City").empty();
+                        $('#Emp_State').append(new Option('Select State', ''));
+                        $('#Emp_City').append(new Option('Select City', ''));
+                        var State = "<select id='Emp_State'>";
+                        State = State + '<option value="">Select State</option>';
+                        for (var i = 0; i < Data.length; i++) {
+                            State = State + '<option value=' + Data[i].State_ID + '>' + Data[i].State_Name + '</option>';
+                        }
+                        State = State + '</select>';
+                        $('#Emp_State').html(State);
+                        if (Sid != "")
+                        {
+                            $("#Emp_State").val(Sid);
+                        }
+                    },
+                    error: function () {
+                        var State = "<select id='Emp_State'>";
+                        State = State + '<option value="">Select State</option>';
+                        State = State + '</select>';
+                        $('#Emp_State').html(State);
+
+                    }
+                });
+
+            }
+
+
+
+        function city(Cid="",Sid="")
+        {
+            if (Sid == "")
+            {
+                Sid = $('#Emp_State').val();
+            }
+
+            $.ajax(
+                {
+                    type: "post",
+                    url: "/Employee/GetCity",
+                    data: { StateId: Sid},
+                    dataType: "json",
+                    //traditional: true,
+                    success: function (Data) {
+
+                        Data = JSON.parse(Data);
+                        var State = "<select id='Emp_City'>";
+                        State = State + '<option value="">Select City</option>';
+                        for (var i = 0; i < Data.length; i++) {
+                            State = State + '<option value=' + Data[i].City_ID + '>' + Data[i].City_Name + '</option>';
+                        }
+                        State = State + '</select>';
+                        $('#Emp_City').html(State);
+                        if (Cid != "") {
+                            $("#Emp_City").val(Cid);
+                        }
+                    },
+                    error: function () {
+                        var State = "<select id='Emp_City'>";
+                        State = State + '<option value="">Select City</option>';
+                        State = State + '</select>';
+                        $('#Emp_City').html(State);
+                    }
+                });
+        }
+
+
+
+        function show(input) {
+            document.getElementById("user_img_show").style.display = "none";
+            document.getElementById("user_img").style.display = "";
+            //$("#user_img").css("display", "");
+            //$("#user_img").show();
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#user_img').attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    }
+    @*<script type="text/javascript">
+            function show(input)
+            {
+                document.getElementById("user_img_show").style.display = "none";
+                //document.getElementById("user_imgSeleect").style.display = "";
+                //$("#user_imgSeleect").css("display", "");
+
+                if (input.files && input.files[0])
+                {
+                    var filerdr = new FileReader();
+                    filerdr.onload = function (e)
+                    {
+                        //$("#user_imgSeleect").show();
+
+                        $('#user_imgSeleect').attr('src', e.target.result);
+                    }
+                    filerdr.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>*@
+
+
+
